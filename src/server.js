@@ -1,7 +1,5 @@
 import express from "express";
 import morgan from "morgan";
-import flash from "express-flash";
-import { localsMiddleware } from "./middlewares";
 import rootRouter from "./routers/rootRouter";
 
 const app = express();
@@ -13,14 +11,9 @@ app.use(logger);
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-app.use(flash());
-app.use(localsMiddleware);
 app.use("/uploads", express.static("uploads"));
 app.use("/static", express.static("assets"));
 
 app.use("/", rootRouter);
-/*
-Add more routers here!
-*/
 
 export default app;
